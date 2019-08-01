@@ -6,10 +6,10 @@ import javax.persistence.Id;
 @Entity
 public class User {
     @Id
-    int id;
-    String firstName;
-    String lastName;
-    int age;
+    private int id;
+    private String firstName;
+    private String lastName;
+    private int age;
 
     public User() {
     }

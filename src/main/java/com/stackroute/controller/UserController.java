@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping(value = "api/v1")
 public class UserController {
 
-    UserService userService;
+    private UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -45,5 +45,18 @@ public class UserController {
         }
 
         return  responseEntity;
+    }
+
+    @GetMapping("user/{id}")
+    public ResponseEntity<?> getUserById(@PathVariable int id){
+        ResponseEntity responseEntity;
+
+        try{
+            responseEntity = new ResponseEntity<User>(userService.getUserById(id), HttpStatus.OK);
+        }catch (Exception e){
+            responseEntity = new ResponseEntity(e.getMessage(), HttpStatus.CONFLICT);
+        }
+
+        return responseEntity;
     }
 }
